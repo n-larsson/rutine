@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+ruby "2.2.1"
+
 gem "rails-api"
 gem "rails", "4.2.2"
 gem "pg"
@@ -16,4 +18,8 @@ group :test do
   gem "rspec-collection_matchers"
   gem "machinist"
   gem "timecop"
+end
+
+group :production do
+  gem "rails_12factor"
 end
