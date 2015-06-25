@@ -29,6 +29,11 @@ Below instructions are for Mac OS X:
     rails server
     open http://localhost:3000
 
+### Project management
+
+Using the agile project management tool Pivotal Tracker at:
+https://www.pivotaltracker.com/n/projects/1374824
+
 ## Deployment
 
   Download Heroku Toolbelt from https://devcenter.heroku.com/articles/getting-started-with-ruby#set-up
@@ -40,9 +45,9 @@ Below instructions are for Mac OS X:
 
 https://safe-eyrie-9009.herokuapp.com/
 
-## Documentation
+## API Documentation
 
-See http://docs.trine.apiary.io/#
+See http://docs.trine.apiary.io/
 
 ## License
 
