@@ -16,3 +16,7 @@ group :development, :test do
   gem "spring"
   gem "rspec-rails", "~> 3.0"
 end
+
+group :test do
+  gem "rspec-collection_matchers"
+end
