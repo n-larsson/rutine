@@ -11,6 +11,6 @@ class V1::RoutineAssignmentsController < ApplicationController
     assignment = routine.assignments.where(user_id: params[:user_id]).find(params[:id])
     assignment.update_attributes!(finished_at: Time.current)
 
-    render json: assignment, status: :ok
+    render json: RoutineAssignmentSerializer.new(assignment).to_json, status: :ok
   end
 end

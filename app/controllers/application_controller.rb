@@ -1,8 +1,7 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
   before_action :authenticate
-  protect_from_forgery with: :null_session
 
   private
 
