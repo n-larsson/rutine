@@ -11,18 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625123100) do
+ActiveRecord::Schema.define(version: 20150625125804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "routine_assignments", force: :cascade do |t|
-    t.integer  "routine_id", null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "routine_id",  null: false
+    t.integer  "user_id",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.datetime "finished_at"
   end
 
+  add_index "routine_assignments", ["finished_at"], name: "index_routine_assignments_on_finished_at", using: :btree
   add_index "routine_assignments", ["routine_id"], name: "index_routine_assignments_on_routine_id", using: :btree
 
   create_table "routines", force: :cascade do |t|

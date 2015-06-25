@@ -5,4 +5,12 @@ class V1::RoutineAssignmentsController < ApplicationController
 
     render json: assignment, status: :created
   end
+
+  def update
+    routine = Routine.find(params[:routine_id])
+    assignment = routine.assignments.where(user_id: params[:user_id]).find(params[:id])
+    assignment.update_attributes!(finished_at: Time.current)
+
+    render json: assignment, status: :ok
+  end
 end

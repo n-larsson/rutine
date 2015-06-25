@@ -9,6 +9,7 @@ gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
 
 gem "jbuilder", "~> 2.0"
+gem "active_model_serializers"
 
 group :development, :test do
   gem "pry-rails"
@@ -20,4 +21,5 @@ end
 group :test do
   gem "rspec-collection_matchers"
   gem "machinist"
+  gem "timecop"
 end

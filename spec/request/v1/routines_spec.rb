@@ -1,6 +1,7 @@
 RSpec.describe "API v1", type: :request do
   let(:user_id) { 123 }
   let(:routine) { Routine.make! }
+  let(:assignment) { RoutineAssignment.make!(routine: routine, user_id: user_id) }
 
   describe "POST /v1/routines - create a new routine" do
     context "success" do
@@ -51,6 +52,25 @@ RSpec.describe "API v1", type: :request do
       expect(response.status).to eq(201)
       expect(response_json).to include(expected_attributes)
       expect(routine.assignments.first.attributes).to include(expected_attributes)
+    end
+  end
+
+  describe "PATCH /v1/users/:user_id/routines/:routine_id/assignments/:id - assign user to routine", :frozen do
+    it "marks an assignment as finished" do
+      expect do
+        patch "/v1/users/#{user_id}/routines/#{routine.id}/assignments/#{assignment.id}", {}, authenticated_headers
+      end.to change { RoutineAssignment.find(assignment.id).finished_at }.from(nil).to(Time.current)
+
+      expected_attributes = {
+        id: assignment.id,
+        routine_id: routine.id,
+        user_id: user_id,
+        finished_at: Time.current.iso8601
+      }.with_indifferent_access
+
+      expect(response.status).to eq(200)
+      expect(response_json).to include(expected_attributes)
+      expect(assignment.reload.finished_at).to eq(Time.current)
     end
   end
 end
