@@ -10,13 +10,15 @@ RSpec.describe "API v1", type: :request do
           post "/v1/routines/#{routine.id}/tasks", query, authenticated_headers
         end.to change { Task.count}.by(1)
 
-        expect(response.status).to eq(201)
-        expect(response_json).to include({
+        expected_attributes = {
           routine_id: routine.id,
           id: Task.last.id,
-          name: "Give keys",
-        })
-        expect(Task.last.name).to eq("Give keys")
+          name: "Give keys"
+        }
+
+        expect(response.status).to eq(201)
+        expect(response_json).to include(expected_attributes)
+        expect(last_attributes(Task)).to include(expected_attributes)
       end
     end
 

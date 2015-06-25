@@ -15,4 +15,14 @@ RSpec.describe Routine, type: :model do
       expect(routine.reload.tasks).to eq([task1, task2])
     end
   end
+
+  describe "#assignments" do
+    it "has many assignments" do
+      assignment1 = RoutineAssignment.make
+      assignment2 = RoutineAssignment.make
+      routine = Routine.make!(assignments: [assignment1, assignment2])
+
+      expect(routine.reload.assignments).to eq([assignment1, assignment2])
+    end
+  end
 end
